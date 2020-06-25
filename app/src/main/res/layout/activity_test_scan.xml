@@ -32,8 +32,7 @@
         app:qrcv_topOffset="80dp"
         app:qrcv_verticalBias="-1" />
 
-<!--    TODO: 1-->
-<!--    <include layout="@layout/toolbar" />-->
+    <include layout="@layout/toolbar" />
 
     <include layout="@layout/view_control" />
 </RelativeLayout>
