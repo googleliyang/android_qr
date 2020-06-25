@@ -37,7 +37,7 @@
         <item name="android:background">@drawable/selector_btn_orange</item>
         <item name="android:layout_margin">5dp</item>
         <item name="android:onClick">onClick</item>
-        <item name="android:padding">4dp</item>
+        <item name="android:padding">8dp</item>
     </style>
 
     <style name="WrapWrapTv" parent="WrapWrap">
@@ -46,7 +46,7 @@
         <item name="android:gravity">center</item>
         <item name="android:background">@drawable/selector_btn_orange</item>
         <item name="android:onClick">onClick</item>
-        <item name="android:padding">4dp</item>
+        <item name="android:padding">8dp</item>
     </style>
 
 </resources>

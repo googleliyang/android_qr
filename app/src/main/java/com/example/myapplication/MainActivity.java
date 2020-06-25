@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,7 +41,18 @@ public class MainActivity extends AppCompatActivity implements QRCodeView.Delega
 
         mZBarView = findViewById(R.id.zbarview);
         mZBarView.setDelegate(this);
+        init();
+
     }
+
+    private void init() {
+        mZBarView.changeToScanBarcodeStyle(); // 切换成扫描条码样式
+        mZBarView.setType(BarcodeType.ONE_DIMENSION, null); // 只识别一维条码
+        mZBarView.getScanBoxView().setOnlyDecodeScanBoxArea(true); // 仅识别扫描框中的码
+        mZBarView.startSpotAndShowRect(); // 显示扫描框，并开始识别
+        // mZBarView.startSpot(); // 开始识别
+    }
+
 
     @Override
     protected void onStart() {
@@ -52,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements QRCodeView.Delega
         mZBarView.startCamera(); // 打开后置摄像头开始预览，但是并未开始识别
 //        mZBarView.startCamera(Camera.CameraInfo.CAMERA_FACING_FRONT); // 打开前置摄像头开始预览，但是并未开始识别
 
-        mZBarView.startSpotAndShowRect(); // 显示扫描框，并开始识别
+        // mZBarView.startSpotAndShowRect(); // 显示扫描框，并开始识别
     }
 
     @Override
@@ -68,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements QRCodeView.Delega
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> perms) {
+        init();
     }
 
     @Override
@@ -97,7 +110,9 @@ public class MainActivity extends AppCompatActivity implements QRCodeView.Delega
     public void onScanQRCodeSuccess(String result) {
         Log.i(TAG, "result:" + result);
         // setTitle("扫描结果为：" + result);
-        Toast.makeText(this, "扫描结果为：" + result, Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "扫描结果为：" + result, Toast.LENGTH_SHORT).show();
+        TextView t = (TextView) findViewById(R.id.res);
+        t.setText("识别结果:" + result);
         vibrate();
 
         mZBarView.startSpot(); // 开始识别
